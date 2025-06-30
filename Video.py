@@ -77,13 +77,14 @@ while cap.isOpened():
                 # Mano 1 (m=1): i=0,1,2 -> finger_index = 4,5,6
                 # Esta lógica salta el índice 3, tal como en tu código original.
                 finger_index = i + (m * 4)
+                
 
                 # --- CORRECCIÓN 4: Llamada correcta a la función is_finger_down ---
                 # Pasamos la lista de landmarks de la mano actual (mano_landmarks.landmark) y los índices del dedo.
                 if is_finger_down(mano_landmarks.landmark, finger_tips_indices[i], finger_mcp_indices[i]):
                     # Si el dedo está ABAJO y su estado anterior era ARRIBA...
                     if not finger_state[finger_index]:
-                        print(f"Tocando sonido {finger_index}") # Ayuda para depurar
+                        print(f"Nota musical {finger_index}") # Ayuda para depurar
                         sonidos[finger_index].play()  # ...reproducir sonido.
                         finger_state[finger_index] = True  # Actualizar el estado del dedo a "ABAJO".
                 else:
@@ -100,7 +101,7 @@ while cap.isOpened():
                 mp_estilos_dibujo.get_default_hand_connections_style())
 
     # Mostrar el fotograma resultante
-    cv2.imshow('Piano Virtual - MediaPipe', frame)
+    cv2.imshow('Muestra mensaje - MediaPipe', frame)
 
     if cv2.waitKey(5) & 0xFF == 27:
         break
